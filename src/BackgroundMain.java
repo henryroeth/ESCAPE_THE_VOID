@@ -55,17 +55,15 @@ public class BackgroundMain {
 			}
 			
 		//paints the overlay indicating that the game is over after the while loop is broken and plays an explosion sound effect
-		musicObject.setLoop(false);
-		//component.changeMusicState(false);
 		musicObject.stopMusic(true);
-		musicObject1.playMusic("C:\\Users\\henry\\Downloads\\fall1.wav");
+		musicObject1.playMusic("boom.wav");
 		
 		try {
 			Thread.sleep(2000);
 		}
 		catch(InterruptedException e) {
 		}
-		musicObject1.playMusic("C:\\Users\\henry\\Downloads\\smw_gameover.wav");
+		musicObject1.playMusic("lose.wav");
 		component.setOverlay(true);
 		frame.repaint();
 		
