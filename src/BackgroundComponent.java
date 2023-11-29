@@ -23,7 +23,7 @@ import java.util.Scanner;
  * @author henry
  *
  */
-
+//comment
 public class BackgroundComponent extends JComponent implements ActionListener, KeyListener {
 	private boolean bulletState=false;
 	private boolean musicState=false;
