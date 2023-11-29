@@ -13,7 +13,7 @@ import java.awt.Font;
  *
  */
 public class StartScreen {
-	NASASpaceship s=new NASASpaceship(140, 92, 0, 0, Color.orange, Color.gray);
+	Spaceship s=new Spaceship(140, 92, 0, 0, Color.orange, Color.gray);
 	private int x;
 	private int y;
 	/**
@@ -150,7 +150,7 @@ public class StartScreen {
 		g2.setFont(stringFont1);
 		g2.drawString("\"ENTER\" TO START",x+155,y+355);
 		}
-	public NASASpaceship startShip() {
+	public Spaceship startShip() {
 		return s;
 	}
 	}	

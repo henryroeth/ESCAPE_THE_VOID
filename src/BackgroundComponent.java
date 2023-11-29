@@ -50,7 +50,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 	/**
 	 * The spaceship.
 	 */
-	private NASASpaceship s;
+	private Spaceship s;
 	/**
 	 * The key.
 	 */
@@ -101,7 +101,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 		k=new Key(-500,-500);
 		
 		//initializes a new spaceship from the field s of type NASASpaceship
-		s=new NASASpaceship(140, 100, 0, 0, Color.gray, Color.gray);
+		s=new Spaceship(140, 100, 0, 0, Color.gray, Color.gray);
 		//adds the KeyListener 
 		addKeyListener(this);
 		setFocusable(true);
@@ -292,36 +292,6 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				//try {
-					//if(highScore<score) {
-						//scoreObject.addScore("",score);
-						//highScore=score;
-					//}
-				//} catch (IOException e) {
-					//e.printStackTrace();
-				/*try {
-					PrintStream outFile=new PrintStream(new File("HighScore.txt"));
-					while(inFile.hasNextInt()) {
-						int number1=inFile.nextInt();
-						if(score>number1) {
-						StringBuilder sb=new StringBuilder("");
-						
-						inFile.close();
-						outFile.close();
-						}
-					}
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
-				/*try {
-					
-					outFile.println(highScore);
-					outFile.close();
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}*/
-				
-				
 				Font stringFont = new Font("SansSerif",Font.PLAIN,20);
 				g2.setFont(stringFont);
 				g2.drawString("Score: "+score,185,360);
@@ -336,12 +306,11 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 					}
 					catch(InterruptedException e) {
 					}
-					musicObject.playMusic("C:\\Users\\henry\\Downloads\\coin.wav");
+					musicObject.playMusic("src/get_shield.wav");
 					shields.add(newShield);
 				}
 			}
 		}
-	//}
 	
 	/**
 	 * This method sets the boolean instance variable to the boolean variable parameter.
@@ -356,8 +325,6 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 	 * @param diff
 	 */
 	public void update(long diff) {
-			
-		//incrementally moves each asteroid that is created and set equal to the instance variable newAsteroid
 		for(int index=0;index<=999;index++) {
 			newAsteroid=aBelt.get(index);
 			newAsteroid.moveAsteroid(diff);
@@ -391,7 +358,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 					}
 					catch(InterruptedException e) {
 					}
-					musicObject.playMusic("C:\\Users\\henry\\OneDrive\\Desktop\\beam1.wav");
+					musicObject.playMusic("src/lose_shield.wav");
 					aBelt.add(newAsteroid);
 				}
 				
@@ -419,11 +386,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 	 * Method for when there is a key pressed.
 	 * @param e KeyEvent object to get the key code of each case.
 	 */
-	public void keyPressed(KeyEvent e) {
-		
-		/*a switch to check each case of a key being pressed,
-		 *getting the key code of each constant listed(included in the KeyEvent class)*/
-		
+	public void keyPressed(KeyEvent e) {	
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			if(startState)
@@ -459,10 +422,6 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 	 * @param e KeyEvent object to get the key code of each case.
 	 */
 	public void keyReleased(KeyEvent e) {
-		
-		/*a switch to check each case of a key being released,
-		 *getting the key code of each constant listed(included in the KeyEvent class)*/
-		
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			s.setDy(0);
@@ -483,7 +442,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 			if(numShields>0&&!s.getShieldState()) {
 				s.drawShield(true);
 				numShields-=1;
-				musicObject.playMusic("C:\\Users\\henry\\Downloads\\levelup.wav");
+				musicObject.playMusic("src/shield.wav");
 			}
 			break;
 		case KeyEvent.VK_ENTER:
@@ -491,7 +450,6 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 			break;
 		}
 	}
-	
 }
 
 
