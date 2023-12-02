@@ -266,6 +266,11 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 			newShield=shields.get(index);
 			newShield.draw(g2);
 		}
+		for(int index=0;index<aBelt.size();index++) {
+			if(aBelt.get(index).getX() < -30) {
+				aBelt.remove(index);
+			}
+		}
 			
 		//draws the game key
 		
