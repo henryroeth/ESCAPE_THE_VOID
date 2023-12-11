@@ -61,11 +61,14 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 	private ArrayList<Asteroid> aBelt;
 	private ArrayList<Asteroid> aBelt1;
 	private ArrayList<Shield> shields;
+	private ArrayList<Bullet> bullets;
+	private ArrayList<Ammo> ammo;
 	/**
 	 * New asteroid to be set equal to an index of the aBelt array list.
 	 */
 	private Asteroid newAsteroid;
 	private Shield newShield;
+	private Ammo newAmmo;
 	/**
 	 * This is constructing the creation of objects to paint 
 	 * from the Asteroid and NASASpaceship classes.
@@ -79,6 +82,8 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 		aBelt=new ArrayList<Asteroid>();
 		aBelt1=new ArrayList<Asteroid>();
 		shields=new ArrayList<Shield>();
+		bullets=new ArrayList<Bullet>();
+		ammo=new ArrayList<Ammo>();
 		
 		/*a loop to create 81 asteroids starting at the x position of 1000 
 		*and incrementing by 200 for each and set to a random y position
@@ -89,6 +94,9 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 		}
 		for(int xPos=1500; xPos<=105000; xPos+=1500) {
 			shields.add(new Shield(xPos, (int)(Math.random()*400)));
+		}
+		for(int xPos=1500; xPos<=105000; xPos+=2500) {
+			ammo.add(new Ammo(xPos, (int)(Math.random()*400)));
 		}
 		
 		//initializes a new overlay from the field overlay of type GameOver
@@ -103,6 +111,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 		//initializes a new spaceship from the field s of type NASASpaceship
 		s=new Spaceship(140, 100, 0, 0, Color.gray, Color.gray);
 		//adds the KeyListener 
+		
 		addKeyListener(this);
 		setFocusable(true);
 		
@@ -266,6 +275,20 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 			newShield=shields.get(index);
 			newShield.draw(g2);
 		}
+		for(int index=0;index<=40;index++) {
+			newAmmo=ammo.get(index);
+			newAmmo.draw(g2);
+		}
+		for(int index=0;index<aBelt.size();index++) {
+			if(aBelt.get(index).getX() < 0) {
+				aBelt.get(index).setX(400000);
+				aBelt.get(index).setY(Math.random()*400);
+			}
+		}
+		
+		
+		
+		
 			
 		//draws the game key
 		
@@ -294,20 +317,43 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 				}
 				Font stringFont = new Font("SansSerif",Font.PLAIN,20);
 				g2.setFont(stringFont);
-				g2.drawString("Score: "+score,185,360);
+				g2.drawString("Your Score: "+score,SCOREPOS - 40,350);
+				if(NumberFileHandler.readNumberFromFile() < score) {
+					g2.drawString("High Score: "+score,SCOREPOS - 40,370);
+					NumberFileHandler.saveNumberToFile(score);
+				} else {
+					g2.drawString("High Score: "+NumberFileHandler.readNumberFromFile(),SCOREPOS - 40,370);
+				}
+				
 			}
 			for(int index=0;index<=68;index++) {
 				newShield=shields.get(index);
 				if(s.getBoundingBox().intersects(newShield.getBoundingBox())) {
 					shields.remove(newShield);
 					numShields+=1;
+					k.setShield(numShields);
 					try {
 						Thread.sleep(50);
 					}
 					catch(InterruptedException e) {
 					}
-					musicObject.playMusic("src/get_shield.wav");
+					musicObject.playMusic("get_shield.wav");
 					shields.add(newShield);
+				}
+			}
+			for(int index=0;index<=40;index++) {
+				newAmmo=ammo.get(index);
+				if(s.getBoundingBox().intersects(newAmmo.getBoundingBox())) {
+					ammo.remove(newAmmo);
+					
+					
+					try {
+						Thread.sleep(50);
+					}
+					catch(InterruptedException e) {
+					}
+					musicObject.playMusic("get_shield.wav");
+					ammo.add(newAmmo);
 				}
 			}
 		}
@@ -332,6 +378,10 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 		for(int index=0;index<=68;index++) {
 			newShield=shields.get(index);
 			newShield.moveShield(diff);
+		}
+		for(int index=0;index<=40;index++) {
+			newAmmo=ammo.get(index);
+			newAmmo.moveAmmo(diff);
 		}
 	}
 	public void updateScore() {
@@ -358,7 +408,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 					}
 					catch(InterruptedException e) {
 					}
-					musicObject.playMusic("src/lose_shield.wav");
+					musicObject.playMusic("lose_shield.wav");
 					aBelt.add(newAsteroid);
 				}
 				
@@ -411,7 +461,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 		case KeyEvent.VK_ESCAPE:
 			System.exit(0);
 			break;
-		case KeyEvent.VK_Q:
+		case KeyEvent.VK_SPACE:
 			if(startState)
 			k.moveKey(35, 35);
 			break;
@@ -436,17 +486,21 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 			s.setDx(0);
 			break;
 		case KeyEvent.VK_Q:
-			k.moveKey(-500, -500);
+			
 			break;
 		case KeyEvent.VK_F:
 			if(numShields>0&&!s.getShieldState()) {
 				s.drawShield(true);
 				numShields-=1;
-				musicObject.playMusic("src/shield.wav");
+				k.setShield(numShields);
+				musicObject.playMusic("shield.wav");
 			}
 			break;
 		case KeyEvent.VK_ENTER:
 			startState=true;
+			break;
+		case KeyEvent.VK_SPACE:
+			k.moveKey(-500, -500);
 			break;
 		}
 	}

@@ -10,7 +10,7 @@ public class Shield {
 	private Rectangle2D.Double rect;
 	private double x,y;
 	private double velocity=.20;
-	public Shield(int x,int y) {
+	public Shield(double x,double y) {
 		this.x=x;
 		this.y=y;
 		rect=new Rectangle2D.Double(x, y, 25, 25);

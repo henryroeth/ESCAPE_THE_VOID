@@ -34,7 +34,7 @@ public class Main {
 		Sound musicObject1=new Sound();
 			component.changeMusicState(true);
 			musicObject.setLoop(true);
-			musicObject.playMusic("src/bg_music.wav");
+			musicObject.playMusic("bg_music.wav");
 			while(!component.asteroidCollision()) {
 					long curTime=System.currentTimeMillis();
 					long diff=curTime-oldTime;
@@ -51,14 +51,14 @@ public class Main {
 					}
 			}
 		musicObject.stopMusic(true);
-		musicObject1.playMusic("src/boom.wav");
+		musicObject1.playMusic("boom.wav");
 		
 		try {
 			Thread.sleep(2000);
 		}
 		catch(InterruptedException e) {
 		}
-		musicObject1.playMusic("src/lose.wav");
+		musicObject1.playMusic("lose.wav");
 		component.setOverlay(true);
 		frame.repaint();
 		}

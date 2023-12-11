@@ -106,7 +106,7 @@ public class Asteroid {
 		g2.fillArc((int)x+30,(int)y+48,15,8,200,180);
 		g2.fillArc((int)x+42,(int)y+16,15,8,285,180);
 		g2.fillArc((int)x+2,(int)y+28,15,8,100,180);
-		}
+	}
 	/**
 	 * Method to move the asteroid.
 	 * @param diff
@@ -128,6 +128,12 @@ public class Asteroid {
 	 */
 	public double getY() {
 		return this.y;
+	}
+	public void setX(double x) {
+		this.x = x;
+	}
+	public void setY(double y) {
+		this.y = y;
 	}
 	/**
 	 * Method to get the bounds of the transparent rectangle that acts as the boundary in determining collision.

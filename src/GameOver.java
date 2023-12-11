@@ -67,7 +67,7 @@ public class GameOver{
 		g2.drawString("A: Moves You Left",x+173,y+87);
 		g2.drawString("S: Moves You Down",x+173,y+97);
 		g2.drawString("D: Moves You Right",x+173,y+107);
-		g2.drawString("F: Activate Shield(3)",x+173,y+117);
+		g2.drawString("F: Activate Shield",x+173,y+117);
 		
 	//text to display that you lost
 		

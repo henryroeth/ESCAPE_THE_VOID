@@ -13,6 +13,7 @@ import java.awt.Color;
 public class Key{
 	private int x;
 	private int y;
+	private int shields;
 	/**
 	 * Constructs the key to display on the frame.
 	 * @param x this will be the x position of the key
@@ -50,7 +51,7 @@ public class Key{
 		g1.drawString("A: Moves You Left",x+8,y+37);
 		g1.drawString("S: Moves You Down",x+8,y+47);
 		g1.drawString("D: Moves You Right",x+8,y+57);
-		g1.drawString("F: Activate Shield(3)",x+8,y+67);	
+		g1.drawString("F: Activate Shield(" + Integer.toString(shields) + ")",x+8,y+67);	
 		
 	}	
 	/**
@@ -63,4 +64,7 @@ public class Key{
 		this.y=keyYLoc;
 	}
 	
+	public void setShield(int shields) {
+		this.shields = shields;
+	}
 }

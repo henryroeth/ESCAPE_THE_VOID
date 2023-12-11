@@ -25,7 +25,7 @@ public class Spaceship {
 	 * Rectangle that is to be used to measure collision status.
 	 */
 	private Rectangle2D.Double rect = new Rectangle2D.Double(x,y,50,25);
-	private Ellipse2D.Double bulletRect = new Ellipse2D.Double(x1+35,y1+10,10,5);;
+	private Ellipse2D.Double bulletRect = new Ellipse2D.Double(x1+35,y1+10,10,5);
 	/**
 	 * State of the explosion to determine when to paint it on top of the spaceship.
 	 */
