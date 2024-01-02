@@ -2,7 +2,7 @@ import java.io.*;
 
 public class NumberFileHandler {
 
-    private static final String FILE_NAME = "number.txt";
+    private static final String FILE_NAME = "resources/number.txt";
 
     public static void saveNumberToFile(int number) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {

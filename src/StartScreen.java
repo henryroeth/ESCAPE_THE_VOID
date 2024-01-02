@@ -108,8 +108,7 @@ public class StartScreen {
 		g2.fill(star13);
 		Rectangle star14 = new Rectangle(200, 400, 7, 7);
 		g2.setColor(Color.white);
-		g2.fill(star14);
-	//77777777777777777777777777	
+		g2.fill(star14);	
 	//creates a frame cover that signals "Game Over"
 		
 	//creates a line border for the inner part of the frame	

@@ -3,6 +3,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -29,12 +30,14 @@ public class Main {
 		frame.addKeyListener(component);
 		frame.setVisible(true);
 		frame.add(component);
+		ImageIcon img = new ImageIcon("resources/icon.png");
+		frame.setIconImage(img.getImage());
 		frame.setResizable(false);
 		Sound musicObject=new Sound();
 		Sound musicObject1=new Sound();
 			component.changeMusicState(true);
 			musicObject.setLoop(true);
-			musicObject.playMusic("bg_music.wav");
+			musicObject.playMusic("resources/bg_music.wav");
 			while(!component.asteroidCollision()) {
 					long curTime=System.currentTimeMillis();
 					long diff=curTime-oldTime;
@@ -51,14 +54,14 @@ public class Main {
 					}
 			}
 		musicObject.stopMusic(true);
-		musicObject1.playMusic("boom.wav");
+		musicObject1.playMusic("resources/boom.wav");
 		
 		try {
 			Thread.sleep(2000);
 		}
 		catch(InterruptedException e) {
 		}
-		musicObject1.playMusic("lose.wav");
+		musicObject1.playMusic("resources/lose.wav");
 		component.setOverlay(true);
 		frame.repaint();
 		}

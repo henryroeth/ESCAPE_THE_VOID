@@ -109,7 +109,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 		k=new Key(-500,-500);
 		
 		//initializes a new spaceship from the field s of type NASASpaceship
-		s=new Spaceship(140, 100, 0, 0, Color.gray, Color.gray);
+		s=new Spaceship(140, 100, 0, 0, new Color(225, 0, 0), Color.gray);
 		//adds the KeyListener 
 		
 		addKeyListener(this);
@@ -323,7 +323,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 					}
 					catch(InterruptedException e) {
 					}
-					musicObject.playMusic("get_shield.wav");
+					musicObject.playMusic("resources/get_shield.wav");
 					shields.add(newShield);
 				}
 			}
@@ -338,7 +338,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 					}
 					catch(InterruptedException e) {
 					}
-					musicObject.playMusic("get_shield.wav");
+					musicObject.playMusic("resources/get_shield.wav");
 					ammo.add(newAmmo);
 				}
 			}
@@ -394,7 +394,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 					}
 					catch(InterruptedException e) {
 					}
-					musicObject.playMusic("lose_shield.wav");
+					musicObject.playMusic("resources/lose_shield.wav");
 					aBelt.add(newAsteroid);
 				}
 				
@@ -479,7 +479,7 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 				s.drawShield(true);
 				numShields-=1;
 				k.setShield(numShields);
-				musicObject.playMusic("shield.wav");
+				musicObject.playMusic("resources/shield.wav");
 			}
 			break;
 		case KeyEvent.VK_ENTER:
