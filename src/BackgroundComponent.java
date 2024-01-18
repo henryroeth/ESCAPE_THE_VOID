@@ -312,6 +312,11 @@ public class BackgroundComponent extends JComponent implements ActionListener, K
 				}
 				
 			}
+			for(int i = 0; i < aBelt.size(); i++){
+				if(aBelt.get(i).getX() < -50){
+					aBelt.remove(i);
+				}
+			}
 			for(int index=0;index<=68;index++) {
 				newShield=shields.get(index);
 				if(s.getBoundingBox().intersects(newShield.getBoundingBox())) {
